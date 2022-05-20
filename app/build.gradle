@@ -3,6 +3,8 @@ plugins {
     id 'org.jetbrains.kotlin.android'
 }
 
+// bundle biasanya lebih kecil, kalo APK agak gede sizenya
+
 android {
     compileSdk 32
 
@@ -17,17 +19,54 @@ android {
     }
 
     buildTypes {
-        release {
+        debug {
+            applicationIdSuffix ".debug" // ini bisa di add di builTypes jg, selain di PF
+            // dibacanya dari PF dulu baru ke buildType, jadi com.example.chapter_7_allminitask.demo.debug
             minifyEnabled false
+            debuggable true
+            buildConfigField("String", "APP_NAME", "\"INI DEBUG\"")
+        }
+        qa {
+            minifyEnabled false
+            debuggable false
+            buildConfigField("String", "APP_NAME", "\"INI QA\"")
+        }
+        release {
+            // kalo di ubah ke relaease, ntar code nya di obfuscated (code nya susah di baca/ubah)
+            // direkomendasi memakai release version agar supaya app nya aman kalo mau di aplot di playStore
+            minifyEnabled true
+            debuggable false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField("String", "APP_NAME", "\"INI RELEASE\"")
         }
     }
+
+    flavorDimensions "version" // ini buat name dimensions secara defaultnya
+    productFlavors {
+        // Di PF ini bisa dimasukin apapun yg ada di dalam defaultConfig
+        // memiliki properti yg sama kek defaultConfig
+        demo {
+            dimension "version"
+            applicationIdSuffix ".demo" //com.example.chapter_7_allminitask.demo == jadi gitu id nya
+            //fungsi applicationIdSuffix buat di aplot di playstore, di ps harus punya AppId yg unik
+            versionNameSuffix "-demo"
+        }
+        full {
+            dimension "version"
+            applicationIdSuffix ".full"
+            versionNameSuffix "-full"
+        }
+    }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
     kotlinOptions {
         jvmTarget = '1.8'
+    }
+    buildFeatures {
+        viewBinding true
     }
 }
 
