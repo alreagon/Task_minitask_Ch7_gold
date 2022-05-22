@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">Chapter_7_allminitask</string>
+    <string name="app_name">Minitask7</string>
+    <string name="app_name_debug">Minitask7 debug</string>
+    <string name="app_name_release">Minitask7 release</string>
 </resources>

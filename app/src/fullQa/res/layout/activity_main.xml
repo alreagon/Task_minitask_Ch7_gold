@@ -11,7 +11,7 @@
         android:textColor="@color/birublue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="INI MAIN"
+        android:text="INI fullQA"
         android:textStyle="bold"
         android:textSize="40sp"
         app:layout_constraintBottom_toBottomOf="parent"

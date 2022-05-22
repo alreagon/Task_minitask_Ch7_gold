@@ -16,6 +16,9 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+//        signingConfig signingConfigs.debug //ini dipake kalo gk make keystore
+
     }
 
     buildTypes {
@@ -25,11 +28,15 @@ android {
             minifyEnabled false
             debuggable true
             buildConfigField("String", "APP_NAME", "\"INI DEBUG\"")
+            manifestPlaceholders = [appNameSuffix: "_debug"]
+            signingConfig signingConfigs.debug
         }
         qa {
+            signingConfig signingConfigs.qa
             minifyEnabled false
             debuggable false
             buildConfigField("String", "APP_NAME", "\"INI QA\"")
+            manifestPlaceholders = [appNameSuffix: ""]
         }
         release {
             // kalo di ubah ke relaease, ntar code nya di obfuscated (code nya susah di baca/ubah)
@@ -38,6 +45,8 @@ android {
             debuggable false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             buildConfigField("String", "APP_NAME", "\"INI RELEASE\"")
+            manifestPlaceholders = [appNameSuffix: ""]
+            signingConfig signingConfigs.release
         }
     }
 

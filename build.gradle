@@ -8,3 +8,23 @@ plugins {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+
+
+android {
+    signingConfigs {
+        qa {
+        storeFile file('D:\\.DATA GUE\\Kuliah\\Binar Academy\\Tugas\\CHAPTER_7\\keystoreminitask\\keystoretest.jks')
+            storePassword 'pwpwpw'
+            keyAlias 'keykey1'
+            keyPassword 'pwpwpw'
+        }
+        release {
+            storeFile file('D:\\.DATA GUE\\Kuliah\\Binar Academy\\Tugas\\CHAPTER_7\\keystoreminitask\\keystoretest.jks')
+            storePassword 'pwpwpw'
+            keyAlias 'keykey1'
+            keyPassword 'pwpwpw'
+        }
+    }
+}
+
