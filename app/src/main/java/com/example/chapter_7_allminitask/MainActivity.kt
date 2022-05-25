@@ -1,10 +1,11 @@
 package com.example.chapter_7_allminitask
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
-import androidx.viewbinding.BuildConfig
+import androidx.appcompat.app.AppCompatActivity
 import com.example.chapter_7_allminitask.databinding.ActivityMainBinding
+import com.example.chapter_7_allminitask.tryHilt.DaggerHilt
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -14,6 +15,11 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         Toast.makeText(this, BuildConfig.BUILD_TYPE, Toast.LENGTH_SHORT).show()
+
+        binding.NyobaHilt.setOnClickListener {
+            val Intent = Intent(this, DaggerHilt::class.java)
+            startActivity(Intent)
+        }
 
     }
 }

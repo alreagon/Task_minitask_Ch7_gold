@@ -1,4 +1,16 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    repositories {
+        google()
+    }
+    dependencies {
+        classpath("androidx.navigation:navigation-safe-args-gradle-plugin:2.4.2")
+        classpath 'com.google.dagger:hilt-android-gradle-plugin:2.40.2'
+    }
+}
+
+
 plugins {
     id 'com.android.application' version '7.1.2' apply false
     id 'com.android.library' version '7.1.2' apply false
@@ -9,22 +21,21 @@ task clean(type: Delete) {
     delete rootProject.buildDir
 }
 
-
-
-android {
-    signingConfigs {
-        qa {
-        storeFile file('D:\\.DATA GUE\\Kuliah\\Binar Academy\\Tugas\\CHAPTER_7\\keystoreminitask\\keystoretest.jks')
-            storePassword 'pwpwpw'
-            keyAlias 'keykey1'
-            keyPassword 'pwpwpw'
-        }
-        release {
-            storeFile file('D:\\.DATA GUE\\Kuliah\\Binar Academy\\Tugas\\CHAPTER_7\\keystoreminitask\\keystoretest.jks')
-            storePassword 'pwpwpw'
-            keyAlias 'keykey1'
-            keyPassword 'pwpwpw'
-        }
-    }
-}
-
+//
+//
+//android {
+//    signingConfigs {
+//        qa {
+//            storeFile file('D:\\.DATA GUE\\Kuliah\\Binar Academy\\Tugas\\CHAPTER_7\\keystoreminitask\\keystoretest.jks')
+//            storePassword 'pwpwpw'
+//            keyAlias 'keykey1'
+//            keyPassword 'keykey1'
+//        }
+//        release {
+//            storeFile file('D:\\.DATA GUE\\Kuliah\\Binar Academy\\Tugas\\CHAPTER_7\\keystoreminitask\\keystoretest.jks')
+//            storePassword 'pwpwpw'
+//            keyAlias 'keykey1'
+//            keyPassword 'keykey1'
+//        }
+//    }
+//}

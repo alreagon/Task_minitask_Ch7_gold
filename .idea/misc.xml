@@ -9,11 +9,15 @@
         <entry key="..\:/.DATA GUE/Kuliah/Binar Academy/Tugas/CHAPTER_7/minitask/app/src/fullDebug/res/layout/activity_main.xml" value="0.22447916666666667" />
         <entry key="..\:/.DATA GUE/Kuliah/Binar Academy/Tugas/CHAPTER_7/minitask/app/src/fullQa/res/layout/activity_main.xml" value="0.22447916666666667" />
         <entry key="..\:/.DATA GUE/Kuliah/Binar Academy/Tugas/CHAPTER_7/minitask/app/src/fullRelease/res/layout/activity_main.xml" value="0.22447916666666667" />
+        <entry key="..\:/.DATA GUE/Kuliah/Binar Academy/Tugas/CHAPTER_7/minitask/app/src/main/res/layout-w1240dp/activity_login.xml" value="0.18" />
+        <entry key="..\:/.DATA GUE/Kuliah/Binar Academy/Tugas/CHAPTER_7/minitask/app/src/main/res/layout-w936dp/activity_login.xml" value="0.168359375" />
+        <entry key="..\:/.DATA GUE/Kuliah/Binar Academy/Tugas/CHAPTER_7/minitask/app/src/main/res/layout/activity_dagger_hilt.xml" value="0.22447916666666667" />
+        <entry key="..\:/.DATA GUE/Kuliah/Binar Academy/Tugas/CHAPTER_7/minitask/app/src/main/res/layout/activity_login.xml" value="0.22447916666666667" />
         <entry key="..\:/.DATA GUE/Kuliah/Binar Academy/Tugas/CHAPTER_7/minitask/app/src/main/res/layout/activity_main.xml" value="0.22447916666666667" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_16" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

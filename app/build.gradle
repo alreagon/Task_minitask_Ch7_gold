@@ -1,11 +1,24 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id "kotlin-kapt"
+    id "androidx.navigation.safeargs"
+    id "dagger.hilt.android.plugin"
 }
 
 // bundle biasanya lebih kecil, kalo APK agak gede sizenya
 
 android {
+
+    signingConfigs {
+        config {
+            storeFile file('D:\\.DATA GUE\\Kuliah\\Binar Academy\\Tugas\\CHAPTER_7\\keystoreminitask\\keystoretest.jks')
+            storePassword 'pwpwpw'
+            keyAlias 'keykey1'
+            keyPassword 'keykey1'
+        }
+    }
+
     compileSdk 32
 
     defaultConfig {
@@ -31,12 +44,29 @@ android {
             manifestPlaceholders = [appNameSuffix: "_debug"]
             signingConfig signingConfigs.debug
         }
-        qa {
-            signingConfig signingConfigs.qa
+
+        koin {
             minifyEnabled false
             debuggable false
-            buildConfigField("String", "APP_NAME", "\"INI QA\"")
+            buildConfigField("String", "APP_NAME", "\"INI Koin\"")
             manifestPlaceholders = [appNameSuffix: ""]
+            signingConfig signingConfigs.config
+        }
+
+        dagger {
+            minifyEnabled false
+            debuggable false
+            buildConfigField("String", "APP_NAME", "\"INI Dagger\"")
+            manifestPlaceholders = [appNameSuffix: ""]
+            signingConfig signingConfigs.config
+        }
+
+        daggerHilt {
+            minifyEnabled false
+            debuggable false
+            buildConfigField("String", "APP_NAME", "\"INI DaggerHilt\"")
+            manifestPlaceholders = [appNameSuffix: ""]
+            signingConfig signingConfigs.config
         }
         release {
             // kalo di ubah ke relaease, ntar code nya di obfuscated (code nya susah di baca/ubah)
@@ -46,26 +76,26 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             buildConfigField("String", "APP_NAME", "\"INI RELEASE\"")
             manifestPlaceholders = [appNameSuffix: ""]
-            signingConfig signingConfigs.release
+            signingConfig signingConfigs.config
         }
     }
 
-    flavorDimensions "version" // ini buat name dimensions secara defaultnya
-    productFlavors {
-        // Di PF ini bisa dimasukin apapun yg ada di dalam defaultConfig
-        // memiliki properti yg sama kek defaultConfig
-        demo {
-            dimension "version"
-            applicationIdSuffix ".demo" //com.example.chapter_7_allminitask.demo == jadi gitu id nya
-            //fungsi applicationIdSuffix buat di aplot di playstore, di ps harus punya AppId yg unik
-            versionNameSuffix "-demo"
-        }
-        full {
-            dimension "version"
-            applicationIdSuffix ".full"
-            versionNameSuffix "-full"
-        }
-    }
+//    flavorDimensions "version" // ini buat name dimensions secara defaultnya
+//    productFlavors {
+//        // Di PF ini bisa dimasukin apapun yg ada di dalam defaultConfig
+//        // memiliki properti yg sama kek defaultConfig
+//        demo {
+//            dimension "version"
+//            applicationIdSuffix ".demo" //com.example.chapter_7_allminitask.demo == jadi gitu id nya
+//            //fungsi applicationIdSuffix buat di aplot di playstore, di ps harus punya AppId yg unik
+//            versionNameSuffix "-demo"
+//        }
+//        full {
+//            dimension "version"
+//            applicationIdSuffix ".full"
+//            versionNameSuffix "-full"
+//        }
+//    }
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -84,8 +114,46 @@ dependencies {
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.4.1'
     implementation 'com.google.android.material:material:1.6.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'androidx.annotation:annotation:1.3.0'
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.4.1'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.1'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+
+
+    // Dagger
+    implementation "com.google.dagger:hilt-android:2.35"
+    kapt "com.google.dagger:hilt-compiler:2.35"
+
+    // Koin Core features
+    def koin_version = "3.2.0"
+    implementation "io.insert-koin:koin-core:$koin_version"
+    // Koin Test features
+    testImplementation "io.insert-koin:koin-test:$koin_version"
+
+    // Koin main features for Android
+    implementation "io.insert-koin:koin-android:$koin_version"
+    // No more koin-android-viewmodel, koin-android-scope, koin-android-fragment
+
+    // Java Compatibility
+    implementation "io.insert-koin:koin-android-compat:$koin_version"
+    // Jetpack WorkManager
+    implementation "io.insert-koin:koin-androidx-workmanager:$koin_version"
+    // Navigation Graph
+    implementation "io.insert-koin:koin-androidx-navigation:$koin_version"
+
+
+
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.6'
+
+    // ViewModel + LiveData
+    implementation "androidx.activity:activity-ktx:1.4.0"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.1"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.4.1"
+
+
 }
