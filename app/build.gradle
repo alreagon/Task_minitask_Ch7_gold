@@ -3,7 +3,7 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id "kotlin-kapt"
     id "androidx.navigation.safeargs"
-    id "dagger.hilt.android.plugin"
+//    id "dagger.hilt.android.plugin"
 }
 
 // bundle biasanya lebih kecil, kalo APK agak gede sizenya
@@ -40,6 +40,7 @@ android {
             // dibacanya dari PF dulu baru ke buildType, jadi com.example.chapter_7_allminitask.demo.debug
             minifyEnabled false
             debuggable true
+            buildConfigField("String", "BASE_URL", "\"https://jsonplaceholder.typicode.com/\"")
             buildConfigField("String", "APP_NAME", "\"INI DEBUG\"")
             manifestPlaceholders = [appNameSuffix: "_debug"]
             signingConfig signingConfigs.debug
@@ -48,24 +49,27 @@ android {
         koin {
             minifyEnabled false
             debuggable false
+            buildConfigField("String", "BASE_URL", "\"https://jsonplaceholder.typicode.com/\"")
             buildConfigField("String", "APP_NAME", "\"INI Koin\"")
-            manifestPlaceholders = [appNameSuffix: ""]
+            manifestPlaceholders = [appNameSuffix: "_koin"]
             signingConfig signingConfigs.config
         }
 
         dagger {
             minifyEnabled false
             debuggable false
+            buildConfigField("String", "BASE_URL", "\"https://jsonplaceholder.typicode.com/\"")
             buildConfigField("String", "APP_NAME", "\"INI Dagger\"")
-            manifestPlaceholders = [appNameSuffix: ""]
+            manifestPlaceholders = [appNameSuffix: "_dagger"]
             signingConfig signingConfigs.config
         }
 
         daggerHilt {
             minifyEnabled false
             debuggable false
+            buildConfigField("String", "BASE_URL", "\"https://jsonplaceholder.typicode.com/\"")
             buildConfigField("String", "APP_NAME", "\"INI DaggerHilt\"")
-            manifestPlaceholders = [appNameSuffix: ""]
+            manifestPlaceholders = [appNameSuffix: "_daggerHilt"]
             signingConfig signingConfigs.config
         }
         release {
@@ -75,7 +79,7 @@ android {
             debuggable false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             buildConfigField("String", "APP_NAME", "\"INI RELEASE\"")
-            manifestPlaceholders = [appNameSuffix: ""]
+            manifestPlaceholders = [appNameSuffix: "_release"]
             signingConfig signingConfigs.config
         }
     }
@@ -123,9 +127,9 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
 
-    // Dagger
-    implementation "com.google.dagger:hilt-android:2.35"
-    kapt "com.google.dagger:hilt-compiler:2.35"
+//    // Dagger
+//    implementation "com.google.dagger:hilt-android:2.35"
+//    kapt "com.google.dagger:hilt-compiler:2.35"
 
     // Koin Core features
     def koin_version = "3.2.0"
